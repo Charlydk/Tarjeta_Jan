@@ -1,0 +1,157 @@
+/* custom.css - Axel & Janet Polish Version */
+
+/* Estilos adicionales para el modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; 
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    width: 480px;
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(-100px);
+}
+
+/* Botón de música FLOTANTE */
+#musicToggleButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #87CEEB;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 10px 20px rgba(135, 206, 235, 0.4);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.5) rotate(-45deg);
+}
+
+#musicToggleButton:hover {
+    background-color: #6EB5D2;
+    transform: scale(1.1) rotate(0deg);
+}
+
+#musicToggleButton.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) rotate(0deg);
+}
+
+#musicToggleButton.playing {
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0% { box-shadow: 0 0 0 0 rgba(135, 206, 235, 0.7); transform: scale(1); }
+    70% { box-shadow: 0 0 0 15px rgba(135, 206, 235, 0); transform: scale(1.05); }
+    100% { box-shadow: 0 0 0 0 rgba(135, 206, 235, 0); transform: scale(1); }
+}
+
+span {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes bounce-scroll {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-15px); }
+    60% { transform: translateY(-7px); }
+}
+
+.animate-bounce-scroll {
+    animation: bounce-scroll 2s infinite;
+}
+
+.slider {
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: #F5F5DC;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.slider ul {
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: cambio 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.slider li {
+    width: 100%;
+    list-style: none;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    background-color: #F5F5DC;
+}
+
+@keyframes cambio {
+    0%, 20% { margin-left: 0; }
+    25%, 45% { margin-left: -100%; }
+    50%, 70% { margin-left: -200%; }
+    75%, 100% { margin-left: -300%; }
+}
+
+
+/* Imágenes de sección con borde blanco */
+.section-img {
+    border: 6px solid white !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Ajustes finales */
+input, select, textarea {
+    font-family: 'Comic Neue', cursive;
+}

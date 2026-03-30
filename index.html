@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axel & Janet - ¡Nos Casamos!</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;500&family=Comic+Neue:wght@400;700&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./custom.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'great-vibes': ['Great Vibes', 'cursive'],
+                        'kalam': ['Kalam', 'cursive'],
+                        'dm-sans': ['DM Sans', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'comic': ['Comic Neue', 'cursive'],
+                        'handwritten': ['Patrick Hand', 'cursive'],
+                    },
+                    colors: {
+                        'primary-beige': '#F5F5DC',
+                        'accent-celeste': '#87CEEB',
+                        'dark-gray': '#333333',
+                        'light-gray-bg': '#F9F9F9',
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body class="font-comic text-black bg-light-gray-bg tracking-wide min-h-screen antialiased">
+
+    <div id="welcomeModal" class="modal-overlay">
+        <div class="modal-content border-4 border-accent-celeste">
+            <h3 class="font-great-vibes text-6xl text-accent-celeste mb-6">¡Bienvenidos!</h3>
+            <p class="font-comic text-lg text-dark-gray mb-8">🌺 Hay un sonido que forma parte de esta experiencia… ¿Te
+                gustaría escucharlo?</p>
+            <div class="flex justify-center gap-4">
+                <button id="playMusicButtonModal"
+                    class="bg-accent-celeste hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    Sí, ¡claro!
+                </button>
+                <button id="noMusicButtonModal"
+                    class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                    No, gracias
+                </button>
+            </div>
+            <p id="loadingMessage" class="text-sm text-gray-600 mt-6 hidden">Cargando...</p>
+        </div>
+    </div>
+    <button id="musicToggleButton" aria-label="Reproducir o pausar música">
+        <i class="fas fa-music"></i>
+    </button>
+    <audio id="music" loop preload="auto">
+        <source src="./assets/audio/musicafondo.mp3" type="audio/mpeg">
+        Tu navegador no soporta la etiqueta audio de...
+    </audio>
+    <div class="max-w-screen-xl mx-auto bg-white shadow-lg overflow-hidden">
+
+        <section id="portada"
+            class="relative h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center">
+                <source src="./assets/video/tomados_de_la_mano.mp4" type="video/mp4">
+                Tu navegador no soporta el video de fondo.
+            </video>
+
+            <div class="absolute inset-0 bg-black opacity-30"></div>
+
+            <div class="relative z-10 p-8">
+                <h1 id="groom-bride-display"
+                    class="wedding-names font-great-vibes tracking-wide text-6xl sm:text-7xl md:text-8xl mb-4 drop-shadow-lg text-accent-celeste"
+                    data-aos="zoom-in" data-aos-duration="1500">Janet & Axel</h1>
+                <p class="font-handwritten text-4xl sm:text-5xl md:text-6xl drop-shadow-md text-white"
+                    data-aos="fade-right" data-aos-delay="500">¡Nos Casamos!</p>
+                <p class="font-comic mt-8 text-xl sm:text-2xl font-light" data-aos="fade-left" data-aos-delay="1000">Con
+                    amor los invitamos a compartir este día tan especial.</p>
+            </div>
+
+            <div class="absolute bottom-8 z-10 flex flex-col items-center text-white text-lg">
+                <p class="font-comic">Desplazar hacia abajo</p>
+                <i class="fas fa-chevron-down text-3xl animate-bounce-scroll text-accent-celeste"></i>
+            </div>
+        </section>
+
+        <div class="bg-cover bg-center bg-fixed"
+            style="background-image: url('./assets/img/main_section_background.jpg');">
+
+            <section id="ceremonia-civil" class="relative py-16 px-6 bg-primary-beige/50 text-center">
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <img src="./assets/img/registrocivil.png" alt="Registro Civil"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-lg" data-aos="flip-up"
+                        data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-6xl sm:text-6xl mb-6 text-accent-celeste bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">Ceremonia Civil</h2>
+                    <p class="text-xl sm:text-2xl font-comic mb-4 text-dark-gray"><span>LUGAR:</span> <span
+                            id="civil-venue-name" class="font-bold">Registro Civil</span></p>
+                    <p class="text-xl sm:text-2xl font-comic mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <span>UBICACIÓN:</span> <span id="civil-address" class="font-bold">Ayacucho 357</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-up" data-aos-delay="500">
+                        <span>DIA:</span> <span id="civil-date" class="font-bold">30/04/2026</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-up" data-aos-delay="600">
+                        <span>HORARIO:</span> <span id="civil-time" class="font-bold">13:00 HS</span>
+                    </p>
+                    <a id="civil-map" href="#" target="_blank"
+                        class="inline-block bg-accent-celeste hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+                        data-aos="zoom-in" data-aos-delay="700">
+                        CÓMO LLEGAR
+                    </a>
+                </div>
+            </section>
+
+            <section id="ceremonia-religiosa" class="relative py-16 px-6 bg-dark-gray/60 text-white text-center">
+
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <img src="./assets/img/Iglesia.png" alt="Iglesia"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-lg" data-aos="flip-up"
+                        data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl mb-6 text-accent-celeste bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">Ceremonia Religiosa</h2>
+                    <p class="text-xl sm:text-2xl font-comic mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <span>PARROQUIA:</span> <span id="church-venue" class="font-bold text-white">Nuestra
+                            Señora de la Medalla Milagrosa</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <span>UBICACIÓN:</span> <span id="church-address" class="font-bold">Formosa 62, San Miguel de
+                            Tucumán</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-up" data-aos-delay="500">
+                        <span>DIA:</span> <span id="church-date" class="font-bold">25/04/2026</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-up" data-aos-delay="600">
+                        <span>HORARIO:</span> <span id="church-time" class="font-bold">21:00 HS</span>
+                    </p>
+                    <a id="church-map" href="#" target="_blank"
+                        class="inline-block bg-accent-celeste hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+                        data-aos="zoom-in" data-aos-delay="700">
+                        CÓMO LLEGAR
+                    </a>
+                </div>
+            </section>
+
+            <section id="recepcion" class="relative py-16 px-6 bg-primary-beige/50 text-dark-gray text-center">
+                <div class="max-w-3xl mx-auto">
+                    <img src="./assets/img/fiesta.png" alt="recien casados"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-lg" data-aos="flip-up"
+                        data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl text-accent-celeste bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-lg mb-6"
+                        data-aos="fade-up" data-aos-delay="200">Fiesta</h2>
+                    <p class="text-xl sm:text-2xl font-comic mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <span>SALÓN:</span> <span id="party-venue" class="font-bold">Círculo de Oficiales</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <span>UBICACIÓN:</span> <span id="party-address" class="font-bold">Av. Pedro Miguel Araoz 325,
+                            Yerba buena</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-up" data-aos-delay="500">
+                        <span>DIA:</span> <span id="party-date" class="font-bold">30/04/2026</span>
+                    </p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-up" data-aos-delay="600">
+                        <span>HORARIO:</span> <span id="party-time" class="font-bold">22:00 HS</span> ¡Puntual!
+                    </p>
+                    <a id="party-map" href="#" target="_blank"
+                        class="inline-block bg-accent-celeste hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+                        data-aos="zoom-in" data-aos-delay="700">
+                        VER UBICACIÓN
+                    </a>
+                </div>
+            </section>
+
+            <section id="countdown" class="relative py-16 px-6 bg-dark-gray/60 text-white text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl text-accent-celeste mb-10 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-lg"
+                        data-aos="fade-down" data-aos-duration="1000">¡Pronto el gran día!</h2>
+
+                    <div class="flex flex-wrap justify-center items-center gap-6 md:gap-10 mt-8 mb-12">
+                        <div class="flex flex-col items-center bg-white/10 backdrop-blur-md border-2 border-accent-celeste p-6 rounded-full w-32 h-32 sm:w-40 sm:h-40 transform hover:scale-110 transition-transform duration-300 shadow-2xl justify-center"
+                            data-aos="fade-up" data-aos-delay="100">
+                            <p id="days" class="text-4xl sm:text-5xl font-bold text-accent-celeste"></p>
+                            <span
+                                class="text-xs sm:text-sm mt-1 font-comic uppercase tracking-widest text-white/80">Días</span>
+                        </div>
+                        <div class="flex flex-col items-center bg-white/10 backdrop-blur-md border-2 border-accent-celeste p-6 rounded-full w-32 h-32 sm:w-40 sm:h-40 transform hover:scale-110 transition-transform duration-300 shadow-2xl justify-center"
+                            data-aos="fade-up" data-aos-delay="200">
+                            <p id="hours" class="text-4xl sm:text-5xl font-bold text-accent-celeste"></p>
+                            <span
+                                class="text-xs sm:text-sm mt-1 font-comic uppercase tracking-widest text-white/80">Horas</span>
+                        </div>
+                        <div class="flex flex-col items-center bg-white/10 backdrop-blur-md border-2 border-accent-celeste p-6 rounded-full w-32 h-32 sm:w-40 sm:h-40 transform hover:scale-110 transition-transform duration-300 shadow-2xl justify-center"
+                            data-aos="fade-up" data-aos-delay="300">
+                            <p id="minutes" class="text-4xl sm:text-5xl font-bold text-accent-celeste"></p>
+                            <span
+                                class="text-xs sm:text-sm mt-1 font-comic uppercase tracking-widest text-white/80">Minutos</span>
+                        </div>
+                        <div class="flex flex-col items-center bg-white/10 backdrop-blur-md border-2 border-accent-celeste p-6 rounded-full w-32 h-32 sm:w-40 sm:h-40 transform hover:scale-110 transition-transform duration-300 shadow-2xl justify-center"
+                            data-aos="fade-up" data-aos-delay="400">
+                            <p id="sec" class="text-4xl sm:text-5xl font-bold text-accent-celeste"></p>
+                            <span
+                                class="text-xs sm:text-sm mt-1 font-comic uppercase tracking-widest text-white/80">Segundos</span>
+                        </div>
+                    </div>
+                    <p class="mt-12 text-lg sm:text-xl max-w-2xl mx-auto font-handwritten leading-relaxed text-accent-celeste"
+                        data-aos="fade-in" data-aos-delay="500"><span>Con vos compartiendo este momento, será aún más
+                            significativo. ¡Nos alegra recibirte!</span></p>
+                </div>
+            </section>
+
+            <section id="confirmacion" class="relative py-16 px-6 bg-primary-beige/50 text-center">
+
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <img src="./assets/img/sobre.png" alt="sobre"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-lg" data-aos="zoom-in"
+                        data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl mb-6 text-accent-celeste bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-lg"
+                        data-aos="fade-right" data-aos-delay="200">Confirmá tu Asistencia</h2>
+                    <p class="text-xl sm:text-2xl font-comic mb-8" data-aos="fade-left" data-aos-delay="400">¡Tu
+                        presencia es muy importante para nosotros! <br> Por favor, confirmanos tu asistencia antes del
+                        <span class="bg-accent-celeste/50 px-4 py-1 rounded-full"><span id="rsvp-deadline"
+                                class="text-accent-black font-bold">10 de Abril</span></span>.
+                    </p>
+                    <a id="rsvp-link" href="#" target="_blank"
+                        class="inline-block bg-accent-celeste hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+                        data-aos="zoom-in" data-aos-delay="600">
+                        CONFIRMAR ASISTENCIA
+                    </a>
+                </div>
+            </section>
+
+            <section id="dress-code-section" class="relative py-16 px-6 bg-dark-gray/60 text-white text-center">
+                <div class="max-w-3xl mx-auto">
+                    <img src="./assets/img/dresscode.png" alt="Dress Code"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-2xl" data-aos="zoom-in"
+                        data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl text-accent-celeste mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">Dress Code</h2>
+                    <p class="text-xl sm:text-2xl font-comic mb-4" data-aos="fade-up" data-aos-delay="400">Categoría:
+                        <span id="dress-code-type" class="font-bold text-accent-celeste text-3xl">Elegante / Elegante
+                            Sport</span>.
+                    </p>
+                    <p id="dress-code-desc" class="text-lg font-handwritten opacity-90 italic text-2xl">Por favor,
+                        evitar vestimenta de color claro.</p>
+                </div>
+            </section>
+
+            <section id="regalos" class="relative py-16 px-6 bg-primary-beige/50 text-dark-gray text-center">
+                <div class="max-w-3xl mx-auto">
+                    <img src="./assets/img/gifbox.png" alt="caja de regalos"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-lg"
+                        data-aos="flip-right" data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl text-accent-celeste bg-white/20 backdrop-blur-md border border-white/30 p-4 rounded-xl shadow-lg mb-6"
+                        data-aos="fade-down" data-aos-delay="200">Regalos</h2>
+                    <p class="text-xl sm:text-2xl font-comic mb-8 font-bold" data-aos="fade-up" data-aos-delay="400">Tu
+                        regalo es tu presencia. Si deseas hacernos un aporte a nuestra nueva etapa sería un gran
+                        detalle, te lo agradecemos.</p>
+                    <p class="text-xl sm:text-2xl font-comic mb-8"> <span class="bg-accent-celeste/20 p-2 rounded">CBU:
+                            XXXXXXXXX</span></p>
+                </div>
+            </section>
+
+            <section id="book" class="relative py-16 px-6 bg-dark-gray/60 text-white text-center">
+                <div class="max-w-3xl mx-auto">
+                    <img src="./assets/img/nosotros.png" alt="recien casados"
+                        class="rounded-full w-56 h-56 mb-6 mx-auto border-4 border-white shadow-lg" data-aos="flip-up"
+                        data-aos-duration="1000">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl text-accent-celeste mb-6 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-lg"
+                        data-aos="fade-up" data-aos-duration="1000">Nosotros ♥</h2>
+                    <p class="text-xl sm:text-2xl font-handwritten mb-8 font-bold text-3xl" data-aos="fade-left"
+                        data-aos-delay="500">
+                        Cada historia de amor es diferente, ¡pero la nuestra es Única!</p>
+
+                    <div class="slider ring-4 ring-accent-celeste" data-aos="fade-up" data-aos-delay="800">
+                        <ul>
+                            <li>
+                                <img src="./assets/img/foto1.jpg" alt="foto 1">
+                            </li>
+                            <li>
+                                <img src="./assets/img/foto2.jpg" alt="foto 2">
+                            </li>
+                            <li>
+                                <img src="./assets/img/foto3.jpg" alt="foto 3">
+                            </li>
+                            <li>
+                                <img src="./assets/img/foto4.jpg" alt="foto 7">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <br>
+
+                    <span data-aos="zoom-in" data-aos-delay="1200">
+                        <a href="https://photos.app.goo.gl/29d3orxp9gh2Jgia6" target="_blank"
+                            class="inline-block bg-accent-celeste hover:bg-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 font-comic">
+                            Compartí tus fotos
+                        </a>
+                    </span>
+                </div>
+            </section>
+
+            <section id="footer"
+                class="relative py-16 px-6 bg-dark-gray/90 text-white text-center border-t-8 border-accent-celeste">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="font-great-vibes text-5xl sm:text-6xl mb-6 text-accent-celeste">¡Gracias!</h2>
+                    <p id="footer-names"
+                        class="wedding-names font-great-vibes text-4xl sm:text-5xl mb-4 text-accent-celeste">Janet &
+                        Axel</p>
+                    <p class="text-md sm:text-lg opacity-80 mt-8 font-comic">© 2026 - Con amor para nuestra familia y
+                        amigos.</p>
+
+                    <div class="mt-12 pt-8 border-t border-white/10 opacity-60 hover:opacity-100 transition-opacity">
+                        <p class="text-sm font-comic">
+                            Desarrollado con ❤️ por
+                            <a href="https://wa.me/5493813852485" target="_blank"
+                                class="font-bold hover:text-accent-celeste underline">
+                                Fabian Bernardino
+                            </a>
+                        </p>
+                        <p class="text-xs mt-2">381 385 2485</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: true,
+            mirror: false,
+            offset: 120,
+            easing: 'ease-in-out',
+        });
+    </script>
+
+    <script src="./js/wedding-config.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/Countdown.js"></script>
+    <script src="./js/Music.js"></script>
+
+</body>
+
+</html>
